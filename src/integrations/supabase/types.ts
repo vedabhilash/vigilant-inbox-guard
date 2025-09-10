@@ -14,13 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      emails: {
+        Row: {
+          confidence_score: number
+          content: string
+          created_at: string
+          features: Json
+          id: string
+          model_used: string
+          prediction_label: string
+          processed_at: string
+          sender_email: string | null
+          subject: string | null
+          user_id: string | null
+        }
+        Insert: {
+          confidence_score: number
+          content: string
+          created_at?: string
+          features?: Json
+          id?: string
+          model_used?: string
+          prediction_label: string
+          processed_at?: string
+          sender_email?: string | null
+          subject?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          confidence_score?: number
+          content?: string
+          created_at?: string
+          features?: Json
+          id?: string
+          model_used?: string
+          prediction_label?: string
+          processed_at?: string
+          sender_email?: string | null
+          subject?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      model_metrics: {
+        Row: {
+          accuracy: number | null
+          f1_ham: number | null
+          f1_spam: number | null
+          id: string
+          last_updated: string
+          model_name: string
+          precision_ham: number | null
+          precision_spam: number | null
+          recall_ham: number | null
+          recall_spam: number | null
+          total_emails_processed: number | null
+        }
+        Insert: {
+          accuracy?: number | null
+          f1_ham?: number | null
+          f1_spam?: number | null
+          id?: string
+          last_updated?: string
+          model_name: string
+          precision_ham?: number | null
+          precision_spam?: number | null
+          recall_ham?: number | null
+          recall_spam?: number | null
+          total_emails_processed?: number | null
+        }
+        Update: {
+          accuracy?: number | null
+          f1_ham?: number | null
+          f1_spam?: number | null
+          id?: string
+          last_updated?: string
+          model_name?: string
+          precision_ham?: number | null
+          precision_spam?: number | null
+          recall_ham?: number | null
+          recall_spam?: number | null
+          total_emails_processed?: number | null
+        }
+        Relationships: []
+      }
+      spam_keywords: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: string
+          keyword: string
+          weight: number
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          keyword: string
+          weight?: number
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          keyword?: string
+          weight?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      update_model_metrics: {
+        Args: { p_is_correct: boolean; p_model_name: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
